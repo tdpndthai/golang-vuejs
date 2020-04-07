@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "github.com/tdpndthai/golang-vuejs/api"
+
 
 func main(){
-	fmt.Println("hello")
+	api.Run()
 }

@@ -43,6 +43,7 @@ func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Location", fmt.Sprintf("%s%s/%d", r.Host, r.RequestURI, userCreated.ID))
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	responses.JSON(w, http.StatusCreated, userCreated)
 }
 
@@ -55,6 +56,7 @@ func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	responses.JSON(w, http.StatusOK, users)
 }
 
@@ -72,6 +74,7 @@ func (server *Server) GetUser(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	responses.JSON(w, http.StatusOK, userGotten)
 }
 
@@ -115,6 +118,7 @@ func (server *Server) UpdateUser(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, formattedError)
 		return
 	}
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	responses.JSON(w, http.StatusOK, updatedUser)
 }
 
@@ -144,5 +148,6 @@ func (server *Server) DeleteUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Entity", fmt.Sprintf("%d", uid))
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	responses.JSON(w, http.StatusNoContent, "")
 }

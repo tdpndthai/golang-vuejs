@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 
@@ -21,7 +22,7 @@ type Server struct {
 
 func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
 
-	var err error 
+	var err error
 
 	if Dbdriver == "mysql" {
 		DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
@@ -47,11 +48,13 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 	server.DB.Debug().AutoMigrate(&models.User{}) //database migration
 
 	server.Router = mux.NewRouter()
-
-	server.initializeRoutes()
 }
 
 func (server *Server) Run(addr string) {
-	fmt.Println("Listening to port 8080")
-	log.Fatal(http.ListenAndServe(addr, server.Router))
+	fmt.Println("Listening to port 3030")
+	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization","Accept","User-Agent"})
+	methods := handlers.AllowedMethods([]string{"POST", "GET", "OPTIONS", "PUT", "DELETE"})
+	origins := handlers.AllowedOrigins([]string{"*"})
+	server.initializeRoutes()
+	log.Fatal(http.ListenAndServe(addr, handlers.CORS(headers, methods, origins)(server.Router)))
 }

@@ -15,6 +15,7 @@
           <button class="btn btn-primary" @click="fetchData">FetchData</button>
         </div>
       </div>
+      <div v-if="error" class="alert alert-secondary">Có lỗi xảy ra khi đăng nhập</div>
     </div>
   </div>
 </template>
@@ -28,24 +29,27 @@ export default {
         password: ""
       },
       users: [],
-      resource: {}
+      resource: {},
+      token:"",
+      error: false
     };
   },
   methods: {
     submit() {
-      this.$http.post("login", this.user, {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT, DELETE",
-	          "Access-Control-Allow-Headers": "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization"
-          }
-        })
+      this.$http.post("login", this.user)
         .then(
           response => {
             console.log(response);
+            var token = response.data;
+            //console.log(token);
+            this.token = token
+            if (this.token != null){
+              this.$router.push({name:"register"})
+            }
           },
           error => {
             console.log(error);
+            this.error = true;
           }
         );
     },

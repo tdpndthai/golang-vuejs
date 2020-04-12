@@ -1,4 +1,4 @@
-# golang-vuejs
+﻿# golang-vuejs
 
 Chỉnh sửa file setting.json, vì project này dùng go-module để quản lí
 
@@ -8,3 +8,10 @@ Chỉnh sửa file setting.json, vì project này dùng go-module để quản l
         "GO111MODULE": "on"
     }
 }
+
+Fix error block cors 
+
+
+
+
+

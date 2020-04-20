@@ -15,6 +15,25 @@ import (
 	"github.com/tdpndthai/golang-vuejs/api/utils/formaterror"
 )
 
+func (server *Server) ExtractTokenID(w http.ResponseWriter ,r *http.Request){
+	user := models.User{}
+	tokenID, err := auth.ExtractTokenID(r)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	if err != nil {
+		responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
+		return
+	}
+	userGotten, err := user.FindUserByID(server.DB, uint32(tokenID))
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+	responses.JSON(w, http.StatusOK, userGotten)
+}
+
 func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	body, err := ioutil.ReadAll(r.Body)

@@ -1,11 +1,33 @@
-import Home from './views/Home.vue';
-import Login from './views/Login.vue'
-import Register from './views/Register.vue';
-import CreateUser from './views/CreateUser.vue'
+import Home from './Home.vue';
+import Login from './Login.vue'
+import Register from './Register.vue';
+import CreateUser from './user/CreateUser.vue'
+import UserDetail from './user/UserDetail.vue'
+import UserEdit from './user/UserEdit.vue'
+import User from './user/User.vue';
 
 export const routes=[
-    {path:'/',component: Home,name:'home'},
-    {path:'/login',component: Login,name:'login'},
-    {path:'/register',component: Register,name:'register'},
-    {path:'/creatuser',component: CreateUser,name:'createuser'},
+    {
+        path:'/',component:Login,name:'login'
+    },
+    {
+        path:'/home',component:Home,name:'home',props:true
+    },
+    {
+        path:'/createuser',component:CreateUser,name:'createuser'
+    },
+    {
+        path:'/register',component:Register,name:'register'
+    },
+    {
+        path:"/user",component:User,name:'user',props:true,
+        children:[
+            {
+                path:':id',component:UserDetail,name:'userdetail'
+            },
+            {
+                path:'edit/:id',component:UserEdit,name:'useredit'
+            },
+        ]
+    }
 ];

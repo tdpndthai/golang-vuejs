@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -13,17 +14,18 @@ import (
 )
 
 func (server *Server) Login(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "OPTIONS" {
-		r.Method = "POST"
-	}
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	body, err := ioutil.ReadAll(r.Body)
+	// if r.Method == "OPTIONS" {
+	// 	r.Method = "POST"
+	// }
+	// w.Header().Set("Access-Control-Allow-Origin", "*")
+	body, err := ioutil.ReadAll(r.Body) //body trả về byte
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
-	user := models.User{}
+	user := models.User{} //khởi tạo user
 	err = json.Unmarshal(body, &user)
+	fmt.Println(err)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return

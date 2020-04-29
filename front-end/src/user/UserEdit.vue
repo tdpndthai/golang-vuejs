@@ -3,15 +3,15 @@
     <p>User Edit</p>
     <div>
       <div class="form-group">
-        <label>Nick Name</label>
+        <label>{{$t('nickname')}}</label>
         <input class="form-control" v-model="Edit.nickname">
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label for="email">{{$t('email')}}:</label>
         <input type="email" class="form-control" v-model="Edit.email">
       </div>
       <div class="form-group">
-        <label for="pwd">Password:</label>
+        <label for="pwd">{{$t('password')}}:</label>
         <input type="password" class="form-control" v-model="Edit.password">
       </div>
       <button type="submit" class="btn btn-default" @click="update">Submit</button>

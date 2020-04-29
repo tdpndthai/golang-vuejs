@@ -1,0 +1,10 @@
+{
+    "login":"Login",
+    "email":"Email",
+    "password":"Password",
+    "creatuser":"CreateUser",
+    "nickname":"Nick Name",
+    "user":"User",
+    "detailuser":"Detail User",
+    "edituser":"Edit User"
+}

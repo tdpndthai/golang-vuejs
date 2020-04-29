@@ -13,15 +13,15 @@
           <td>{{GetUser.id}}</td>
         </tr>
         <tr>
-          <td>Nick Name</td>
+          <td>{{$t('nickname')}}</td>
           <td>{{GetUser.nickname}}</td>
         </tr>
         <tr>
-          <td>Email</td>
+          <td>{{$t('email')}}</td>
           <td>{{GetUser.email}}</td>
         </tr>
         <tr>
-          <td>PassWord</td>
+          <td>{{$t('password')}}</td>
           <td>{{GetUser.password}}</td>
         </tr>
       </tbody>

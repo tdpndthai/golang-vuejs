@@ -52,6 +52,7 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 
 func (server *Server) Run(addr string) {
 	fmt.Println("Listening to port 3030")
+	//fix lỗi cors khi gọi api từ client
 	headers := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization", "Accept", "User-Agent", "Origin", "auth_token", "X-CSRF-Token"})
 	methods := handlers.AllowedMethods([]string{"POST", "GET", "OPTIONS", "PUT", "DELETE", "PATCH"})
 	origins := handlers.AllowedOrigins([]string{"*"})

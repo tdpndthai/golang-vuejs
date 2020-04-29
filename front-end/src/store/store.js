@@ -1,50 +1,63 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
-import * as Cookies from "js-cookie";
 
+import customer from "./modules/customer.js";
+import lang from "./modules/lang.js";
+import token from "./modules/token.js";
+
+import * as getters from './getters.js';
+import * as actions from './actions.js';
+import * as mutations from './mutations.js';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
-  state: {
-    customer: {
-      id: Number,
-      nickname:String,
-      email: String,
-      password: String
-    },
-    token:""
-  },
-
-  getters: {
-    getUser: state => {
-      return state.customer;
-    },
-    getToken: state => {
-      return state.token;
-    }
-  },
-  actions: {
-    SetCustomer: ({ commit }, cus) => {
-      commit("SetCustomer", cus);
-    },
-    EditCustomer: ({ commit }, cus) => {
-      commit("EditCustomer",cus)
-    },
-    SetToken: ({ commit }, token) => {
-      commit("SetToken", token);
-    }
-  },
-  mutations: {
-    SetCustomer(state, cus) {
-      state.customer = cus;
-    },
-    EditCustomer(state, cus) {
-      state.customer = cus;
-    },
-    SetToken(state, token) {
-      state.token = token;
-    }
-  },
-  plugins: [createPersistedState()]
+  plugins: [createPersistedState()],
+  getters,
+  mutations,
+  actions,
+  // getters: {
+  //   getUser: state => {
+  //     return state.customer;
+  //   },
+  //   getToken: state => {
+  //     return state.token;
+  //   },
+  //   getLangs: state => {
+  //     return state.lang;
+  //   }
+  // },
+  // mutations: {
+  //   SetCustomer(state, cus) {
+  //     state.customer = cus;
+  //   },
+  //   EditCustomer(state, cus) {
+  //     state.customer = cus;
+  //   },
+  //   SetToken(state, token) {
+  //     state.token = token;
+  //   },
+  //   SetLang(state, lang) {
+  //     state.lang = lang;
+  //   }
+  // },
+  // actions: {
+  //   SetCustomer: ({ commit }, cus) => {
+  //     commit("SetCustomer", cus);
+  //   },
+  //   EditCustomer: ({ commit }, cus) => {
+  //     commit("EditCustomer", cus);
+  //   },
+  //   SetToken: ({ commit }, token) => {
+  //     commit("SetToken", token);
+  //   },
+  //   SetLang: ({ commit }, lang) => {
+  //     commit("SetLang", lang);
+  //   }
+  // },
+  modules: {
+    customer: customer,
+    lang: lang,
+    token: token
+  }
 });

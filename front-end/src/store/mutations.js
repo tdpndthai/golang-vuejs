@@ -13,3 +13,7 @@ export const SetToken = (state, token) => {
 export const SetLang = (state, lang) => {
   state.lang = lang;
 };
+
+export const SetPhoto = (state, photo) => {
+  state.photo = photo;
+};

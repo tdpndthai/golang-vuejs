@@ -3,15 +3,18 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
 import customer from "./modules/customer.js";
-import lang from "./modules/lang.js";
 import token from "./modules/token.js";
+import photo from "./modules/photo.js";
 
-import * as getters from './getters.js';
-import * as actions from './actions.js';
-import * as mutations from './mutations.js';
+import * as getters from "./getters.js";
+import * as actions from "./actions.js";
+import * as mutations from "./mutations.js";
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+  state: {
+    lang: "vi"
+  },
   plugins: [createPersistedState()],
   getters,
   mutations,
@@ -57,7 +60,7 @@ export const store = new Vuex.Store({
   // },
   modules: {
     customer: customer,
-    lang: lang,
-    token: token
+    token: token,
+    photo
   }
 });

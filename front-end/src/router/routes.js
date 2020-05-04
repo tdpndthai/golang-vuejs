@@ -1,9 +1,9 @@
-import Home from '../home/Home.vue';
-import Login from '../login_register/Login.vue'
-import CreateUser from '../login_register/CreateUser.vue'
-import UserDetail from '../user/UserDetail.vue'
-import UserEdit from '../user/UserEdit.vue'
-import User from '../user/User.vue';
+import Home from '../components/home/Home';
+import Login from '../components/login_register/Login.vue'
+import CreateUser from '../components/login_register/CreateUser.vue'
+import UserDetail from '../components/user/UserDetail.vue'
+import UserEdit from '../components/user/UserEdit.vue'
+import User from '../components/user/User.vue';
 
 export const routes=[
     {

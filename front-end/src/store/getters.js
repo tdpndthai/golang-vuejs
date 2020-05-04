@@ -1,11 +1,14 @@
 export const getUser = state => {
-    return state.customer;
-}
+  return state.customer;
+};
 
 export const getToken = state => {
-    return state.token;
-}
+  return state.token;
+};
 
 export const getLangs = state => {
-    return state.lang;
-}
+  return state.lang;
+};
+export const getPhoto = state => {
+  return state.photo;
+};

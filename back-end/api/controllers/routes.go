@@ -20,4 +20,8 @@ func (s *Server) initializeRoutes() {
 	s.Router.HandleFunc("/users/get/{id}", middlewares.SetMiddlewareJSON(s.GetUser)).Methods("GET")
 	s.Router.HandleFunc("/users/edit/{id}", middlewares.SetMiddlewareJSON(middlewares.SetMiddlewareAuthentication(s.UpdateUser))).Methods("PUT")
 	s.Router.HandleFunc("/users/del/{id}", middlewares.SetMiddlewareAuthentication(s.DeleteUser)).Methods("DELETE")
+
+	//Photo routes
+	s.Router.HandleFunc("/uploadfile",middlewares.SetMiddlewareAuthentication(s.UploadFile)).Methods("POST")
+	s.Router.HandleFunc("/getphoto/{id}",middlewares.SetMiddlewareAuthentication(s.GetFileById)).Methods("GET")
 }

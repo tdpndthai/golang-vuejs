@@ -13,3 +13,7 @@ export const SetToken = ({ commit }, token) => {
 export const SetLang = ({ commit }, lang) => {
   commit("SetLang", lang);
 };
+
+export const SetPhoto = ({ commit }, photo) => {
+  commit("SetPhoto", photo);
+};

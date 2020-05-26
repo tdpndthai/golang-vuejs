@@ -9,17 +9,37 @@
 </template>
 
 <script>
+import LoginVue from '../login_register/Login.vue';
 export default {
   data() {
-    return {
-    };
+    return {};
   },
+  methods: {},
   computed: {
     GetUser() {
       return this.$store.getters.getUser;
       console.log(this.$store);
-    }
+    },
   },
+  mounted() {
+    console.log("mouted");
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate");
+    this.checkLogin;
+  },
+  beforeDestroy() {
+    console.log("beforeDestroy");
+  },
+  destroyed() {
+    console.log("destroyed");
+  },
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("created");
+  }
 };
 </script>
 

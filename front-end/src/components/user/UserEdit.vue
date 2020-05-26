@@ -54,8 +54,7 @@ export default {
         }
       );
     },
-  }
-  ,
+  },
   computed: {
     GetUser() {
       return this.$store.getters.getUser;

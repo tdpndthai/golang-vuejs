@@ -6,5 +6,6 @@
     "nickname":"Nick Name",
     "user":"User",
     "detailuser":"Detail User",
-    "edituser":"Edit User"
+    "edituser":"Edit User",
+    "timeout":"Time out login"
 }

@@ -20,7 +20,6 @@ export default {
   data() {
     return {
       selectedFile: null,
-      token: "",
       photo: [],
       percent: 0
     };
@@ -30,17 +29,20 @@ export default {
       this.selectedFile = event.target.files[0];
     },
     onUpload() {
+      let vm = this
       const fd = new FormData();
       fd.append("myfile", this.selectedFile, this.selectedFile.name);
+      var token = this.$store.getters.getToken;
       this.$http
         .post("uploadfile", fd, {
           headers: {
-            Authorization: "Bearer " + this.token
+            Authorization: "Bearer " + token
           },
           progress(e) {
             //console.log(e);
             if (e.lengthComputable) {
-              this.percent = Math.round((e.loaded / e.total) * 100);
+              let currentProgress  = Math.round((e.loaded / e.total) * 100);
+              vm.percent = currentProgress;
             }
           }
         })
@@ -50,18 +52,20 @@ export default {
             var photoUpload = response.data;
             this.photo = photoUpload;
             this.$store.dispatch("SetPhoto", photoUpload);
+            setTimeout(() => {
+              this.clearStatus()
+            },3000)
           },
           error => {
             console.log(error);
           }
         );
+    },
+    clearStatus(){
+      this.selectedFile = null;
+      this.percent = 0;
     }
   },
-  beforeUpdate() {
-    GetToken: {
-      this.token = this.$store.getters.getToken;
-    }
-  }
 };
 </script>
 

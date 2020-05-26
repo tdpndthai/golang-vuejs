@@ -6,5 +6,6 @@
   "nickname": "Biệt danh",
   "user": "Người dùng",
   "detailuser": "Chi tiết người dùng",
-  "edituser": "Chỉnh sửa người dùng"
+  "edituser": "Chỉnh sửa người dùng",
+      "timeout": "Hết hạn đăng nhập"
 }
